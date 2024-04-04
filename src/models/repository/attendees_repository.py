@@ -30,7 +30,7 @@ class AttendeesRepository:
                database.session.rollback()
                raise exception
         
-    def get_attendee_by_id(self, attendee_id: str) -> Attendees:
+    def get_attendee_badge_by_id(self, attendee_id: str) -> Attendees:
         with db_connection_handler as database:
             try:
                 attendee = (

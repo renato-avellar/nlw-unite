@@ -21,7 +21,7 @@ def test_insert_ateendee():
 def test_get_attendee_by_id():
     attendee_id = "meu-uuid-attendee"
     attendee_repository = AttendeesRepository()
-    response = attendee_repository.get_attendee_by_id(attendee_id)
+    response = attendee_repository.get_attendee_badge_by_id(attendee_id)
     print(response)
     
     
