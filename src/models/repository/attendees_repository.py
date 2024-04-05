@@ -3,8 +3,10 @@ from src.models.settings.connection import db_connection_handler
 from src.models.entitities.attendees import Attendees
 from src.models.entitities.check_ins import CheckIns
 from src.models.entitities.events import Events
-from sqlalchemy.exc import IntegrityError
+from src.errors.error_types.http_conflict import HttpConflictError
+from src.errors.error_types.http_not_found import HttpNotFoundError
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import IntegrityError
 
 class AttendeesRepository:
     def insert_attendee(self, attendee_info: Dict) -> Dict:
@@ -25,7 +27,7 @@ class AttendeesRepository:
                 return 
             
            except IntegrityError:
-               raise Exception('Atendente já cadastrado')
+               raise HttpConflictError('Atendente já cadastrado')
            
            except Exception as exception:
                database.session.rollback()
